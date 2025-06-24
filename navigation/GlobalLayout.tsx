@@ -3,7 +3,8 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import BottomBar from './ButtomBar';
 
-const GlobalLayout = ({ children }) => {
+const GlobalLayout = ({children }) => {
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>{children}</View>
