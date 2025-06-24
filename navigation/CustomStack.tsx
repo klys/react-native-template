@@ -5,9 +5,9 @@ import { Appbar } from 'react-native-paper';
 
 import DetailsScreen from '../screens/(tabs)/explore';
 import HomeScreen from '../screens/(tabs)/index';
+import { useAppSelector } from '../store/hooks';
 import GlobalLayout from './GlobalLayout';
 import SideBar from './SideBar';
-
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -61,11 +61,17 @@ function StackScreens() {
 
 export default function CustomStack() {
 
-
-
+  const collapsed = useAppSelector((state) => state.ui.collapsed);
+  // state.ui.collapsed
+   const drawerWidth = collapsed ? 0 : 80
   return (
     <Drawer.Navigator 
       drawerContent={(props) => <SideBar {...props} />}
+      screenOptions={{
+        drawerStyle: {
+          width: drawerWidth,
+        },
+      }}
     >
       <Drawer.Screen
         name="Main"

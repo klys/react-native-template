@@ -6,6 +6,9 @@ import { MD3DarkTheme, MD3LightTheme, PaperProvider } from 'react-native-paper';
 
 import CustomStack from './navigation/CustomStack';
 
+import { Provider } from 'react-redux';
+import { store } from './store';
+
 export default function App() {
     
   const colorScheme = useColorScheme();
@@ -31,10 +34,12 @@ export default function App() {
   const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
 
   return (
-    <PaperProvider theme={theme}>
-      <NavigationContainer>
-        <CustomStack />
-      </NavigationContainer>
-    </PaperProvider>
+     <Provider store={store}>
+      <PaperProvider theme={theme}>
+        <NavigationContainer>
+          <CustomStack />
+        </NavigationContainer>
+      </PaperProvider>
+    </Provider>
   );
 }
