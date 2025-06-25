@@ -1,0 +1,85 @@
+name: Build and Release Expo App
+
+on:
+  push:
+    tags:
+      - 'v*.*.*' # Trigger on version tags like v1.0.0
+
+jobs:
+  build:
+    name: Build for All Platforms
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [android, ios, web, desktop-win, desktop-linux, desktop-mac]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Log in to Expo
+        run: npx expo login --token ${{ secrets.EXPO_TOKEN }}
+
+      - name: Build Android App
+        if: matrix.platform == 'android'
+        run: npx eas build --platform android --non-interactive --profile preview
+
+      - name: Build iOS App
+        if: matrix.platform == 'ios'
+        run: npx eas build --platform ios --non-interactive --profile preview
+
+      - name: Build Web App
+        if: matrix.platform == 'web'
+        run: |
+          npm run web:build || npm run build:web || npx expo export:web
+          zip -r web-build.zip dist/ web-build/
+
+      - name: Build Desktop App (Electron)
+        if: startsWith(matrix.platform, 'desktop')
+        run: |
+          npm install electron-builder --save-dev
+          npx electron-builder --${{ matrix.platform == 'desktop-win' && 'win' || matrix.platform == 'desktop-linux' && 'linux' || 'mac' }}
+      
+      - name: Save Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ matrix.platform }}
+          path: |
+            dist/
+            build/
+            *.apk
+            *.aab
+            *.zip
+            *.dmg
+            *.exe
+            *.AppImage
+
+  release:
+    name: Create GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download All Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          files: artifacts/**/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
