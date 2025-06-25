@@ -6,6 +6,8 @@ import { Drawer } from 'react-native-paper';
 import { useAppDispatch } from '../store/hooks';
 import { toggleCollapse } from '../store/slices/uiSlice';
 
+import { View } from "react-native";
+
 const SideBar = (props) => {
   
     const dispatch = useAppDispatch();
@@ -22,15 +24,110 @@ const SideBar = (props) => {
         title=" "
         showDivider={false}
     >
+      <View style={{flexDirection:"row"}} >
+        <View
+          style={{
+            width:"32px",
+            flex: 0.2
+          }}
+        >
+          <Drawer.CollapsedItem
+          focusedIcon="account"
+          unfocusedIcon="account"
+          label="My Account"
+          theme={{
+              colors: { primary:"black"}
+          }}
+        />
+        </View>
 
-      <Drawer.CollapsedItem
-        focusedIcon="inbox"
-        unfocusedIcon="inbox-outline"
-        label="Inbox"
-        theme={{
-            colors: { primary:"black"}
-        }}
-       />
+        <View
+          style={{
+            width:"32px",
+            flex: 0.2
+          }}
+        >
+          <Drawer.CollapsedItem
+          focusedIcon="cog-outline"
+          unfocusedIcon="cog-outline"
+          label="Settings"
+          theme={{
+              colors: { primary:"black"}
+          }}
+        />
+        </View>
+
+        <View
+          style={{
+            width:"32px",
+            flex: 0.2
+          }}
+        >
+          <Drawer.CollapsedItem
+          focusedIcon="comment-multiple"
+          unfocusedIcon="comment-multiple"
+          label="Messages"
+          theme={{
+              colors: { primary:"black"}
+          }}
+        />
+        </View>
+
+         <View
+          style={{
+            width:"32px",
+            flex: 0.2
+          }}
+        >
+        <Drawer.CollapsedItem
+          focusedIcon="printer"
+          unfocusedIcon="printer"
+          label="Printers"
+          theme={{
+              colors: { primary:"black"}
+          }}
+        />
+        </View>
+
+         
+
+      </View>
+
+      <View style={{flexDirection:"row"}} >
+
+        <View
+          style={{
+            width:"32px",
+            flex: 0.2
+          }}
+        >
+        <Drawer.CollapsedItem
+          focusedIcon="security"
+          unfocusedIcon="security"
+          label="System"
+          theme={{
+              colors: { primary:"black"}
+          }}
+        />
+        </View>
+
+        <View
+          style={{
+            width:"32px",
+            flex: 0.2
+          }}
+        >
+        <Drawer.CollapsedItem
+          focusedIcon="newspaper"
+          unfocusedIcon="newspaper"
+          label="News"
+          theme={{
+              colors: { primary:"black"}
+          }}
+        />
+        </View>
+
+      </View>
 
     </Drawer.Section>
   );

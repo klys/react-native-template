@@ -68,9 +68,8 @@ export default function CustomStack() {
     <Drawer.Navigator 
       drawerContent={(props) => <SideBar {...props} />}
       screenOptions={{
-        drawerStyle: {
-          width: drawerWidth,
-        },
+        drawerType:"back",
+        
       }}
     >
       <Drawer.Screen
