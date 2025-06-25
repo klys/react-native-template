@@ -45,8 +45,8 @@ jobs:
       - name: Build Web App
         if: matrix.platform == 'web'
         run: |
-          npx expo export --platform web
-          zip -r web-build.zip dist/
+          npx expo build:web
+          zip -r web-build.zip web-build/
 
       - name: Build Desktop App (Electron)
         if: startsWith(matrix.platform, 'desktop')
