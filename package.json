@@ -2,6 +2,8 @@
   "name": "rally-point-app",
   "main": "node_modules/expo/AppEntry.js",
   "version": "1.0.0",
+  "author":"Junior.Jimenez@bestbuy.com",
+  "description": "Cross Platform App with React Native",
   "scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
@@ -26,6 +28,7 @@
     "expo-linking": "~7.1.5",
     "expo-router": "~5.1.0",
     "expo-splash-screen": "~0.30.9",
+    "expo-sqlite": "~15.2.12",
     "expo-status-bar": "~2.2.3",
     "expo-symbols": "~0.4.5",
     "expo-system-ui": "~5.0.9",
@@ -41,12 +44,12 @@
     "react-native-web": "~0.20.0",
     "react-native-webview": "13.13.5",
     "react-navigation": "^5.0.0",
-    "react-redux": "^9.2.0",
-    "expo-sqlite": "~15.2.12"
+    "react-redux": "^9.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@types/react": "~19.0.10",
+    "electron": "^37.0.0",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~9.2.0",
     "typescript": "~5.8.3"
