@@ -9,6 +9,7 @@ jobs:
   build:
     name: Build for All Platforms
     runs-on: ubuntu-latest
+    environment: react-native
     strategy:
       matrix:
         platform: [android, ios, web, desktop-win, desktop-linux, desktop-mac]
