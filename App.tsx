@@ -17,8 +17,8 @@ export default function App() {
     ...MD3LightTheme,
     colors: {
       ...MD3LightTheme.colors,
-      primary: '#6200EE',
-      accent: '#03DAC4',
+      //primary: '#6200EE',
+      //accent: '#03DAC4',
     },
   };
 
@@ -26,12 +26,12 @@ export default function App() {
     ...MD3DarkTheme,
     colors: {
       ...MD3DarkTheme.colors,
-      primary: '#BB86FC',
-      accent: '#03DAC6',
+      //primary: '#BB86FC',
+      //accent: '#03DAC6',
     },
   };
 
-  const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
+  const theme = lightTheme;//colorScheme === 'dark' ? darkTheme : lightTheme;
 
   return (
      <Provider store={store}>

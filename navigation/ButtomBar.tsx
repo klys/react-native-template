@@ -27,8 +27,8 @@ function BottomBar () {
     >
       <Appbar.Action icon="home" onPress={() => navigation.push("Home")} />
       <Appbar.Action icon="file" onPress={() => navigation.push("Details")} />
-      <Appbar.Action icon="nuke" onPress={() => {}} />
-      <Appbar.Action icon="delete" onPress={() => {}} />
+      <Appbar.Action icon="account-group" onPress={() => navigation.push("People")} />
+      <Appbar.Action icon="account-details" onPress={() => navigation.push("PeopleTable")} />
       <FAB
         mode="flat"
         size="medium"

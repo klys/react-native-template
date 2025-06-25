@@ -9,6 +9,11 @@ import { useAppSelector } from '../store/hooks';
 import GlobalLayout from './GlobalLayout';
 import SideBar from './SideBar';
 
+
+// Paople Controller
+import AddPeople from '@/screens/people/add';
+import TablePeople from '@/screens/people/table';
+
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +60,16 @@ function StackScreens() {
         component={withLayout(DetailsScreen)}
         options={{ title: 'Details' }}
       />
+      <Stack.Screen
+        name="People"
+        component={withLayout(AddPeople)}
+        options={{ title: 'People' }}
+      />
+      <Stack.Screen
+        name="PeopleTable"
+        component={withLayout(TablePeople)}
+        options={{ title: 'People\'s Table' }}
+      />
     </Stack.Navigator>
   );
 }
@@ -69,8 +84,9 @@ export default function CustomStack() {
       drawerContent={(props) => <SideBar {...props} />}
       screenOptions={{
         drawerType:"back",
-        
+        drawerPosition:"right"
       }}
+      
     >
       <Drawer.Screen
         name="Main"
