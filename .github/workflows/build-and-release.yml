@@ -10,6 +10,8 @@ jobs:
     name: Build for All Platforms
     runs-on: ubuntu-latest
     environment: react-native
+    env:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
     strategy:
       matrix:
         platform: [android, ios, web, desktop-win, desktop-linux, desktop-mac]
@@ -31,8 +33,6 @@ jobs:
 
       - name: Authenticate with Expo
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.EXPO_TOKEN }}" >> ~/.npmrc
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
       - name: Build Android App
         if: matrix.platform == 'android'
