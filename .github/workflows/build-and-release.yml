@@ -53,7 +53,7 @@ jobs:
         if: startsWith(matrix.platform, 'desktop')
         run: |
           npm install electron-builder --save-dev
-          npx electron-builder --${{ matrix.platform == 'desktop-win' && 'win' || matrix.platform == 'desktop-linux' && 'linux' || 'mac' }} --publish never
+          npx electron-builder --${{ matrix.platform == 'desktop-win' && 'win' || matrix.platform == 'desktop-linux' && 'linux' || 'mac' }} --publish never --no-sandbox
       
       - name: Save Build Artifacts
         uses: actions/upload-artifact@v4
