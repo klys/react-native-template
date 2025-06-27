@@ -1,7 +1,8 @@
 // App.tsx
 import { NavigationContainer } from '@react-navigation/native';
-import React from 'react';
-import { useColorScheme } from 'react-native';
+import React, { useEffect } from 'react';
+import { StatusBar, useColorScheme } from 'react-native';
+import ImmersiveMode from 'react-native-immersive';
 import { MD3DarkTheme, MD3LightTheme, PaperProvider } from 'react-native-paper';
 
 import CustomStack from './navigation/CustomStack';
@@ -12,6 +13,11 @@ import { store } from './store';
 export default function App() {
     
   const colorScheme = useColorScheme();
+
+  useEffect(() => {
+    ImmersiveMode.fullLayout(true);     // Enable full layout
+    ImmersiveMode.setBarMode('BottomSticky'); // Or 'Normal', 'StickyImmersive'
+  }, []);
 
   const lightTheme = {
     ...MD3LightTheme,
@@ -35,6 +41,7 @@ export default function App() {
 
   return (
      <Provider store={store}>
+      <StatusBar hidden={true} />
       <PaperProvider theme={theme}>
         <NavigationContainer>
           <CustomStack />
